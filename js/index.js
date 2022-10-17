@@ -12,6 +12,8 @@ let time = 0;
 // }
 let volSize;
 
+
+// making DB (LocalStorage)
 let peopleSound = []
 setInterval(() => {
     if(localStorage.getItem("peopleSound")){
@@ -73,6 +75,7 @@ function draw(){
     pop();
 
     fill(255)
+        //error Handling
     if(localStorage.getItem("peopleSound")){
         const getPartySound = JSON.parse(localStorage.getItem("peopleSound"))
     for(let i = 0; i < getPartySound.length; i++){
