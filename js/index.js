@@ -10,6 +10,24 @@ let time = 0;
 // function preload(){
 //     // audio = loadSound("../../assets/Zufall Musik S1 Kopie 2.m4a");
 // }
+let volSize;
+
+let peopleSound = []
+setInterval(() => {
+    if(localStorage.getItem("peopleSound")){
+        peopleSound = JSON.parse(localStorage.getItem("peopleSound"))
+    }
+    const soundConfig ={
+        soundLeve : volSize,
+        time: Date.now()
+    }
+    peopleSound.push(soundConfig)
+    localStorage.setItem("peopleSound", JSON.stringify(peopleSound))
+    
+
+}, 5000)
+
+
 
 function setup(){
     let cnv = createCanvas(WIDTH,HEIGHT)
@@ -23,18 +41,23 @@ function setup(){
     fft = new p5.FFT(0.92, 512);
     fft.setInput(mic);
 
+
+
+    //text
+    textSize(15);
+
 }
 
 function draw(){
-    background(0)
+    background(0,0,0,50)
     let vol = mic.getLevel();
-    let volSize = map(vol, 0, 1, 10, 1000)
-    console.log(volSize)
+    volSize = map(vol, 0, 1, 10, 1000)
+    // console.log(volSize)
     time += 0.1;
     // let level = amp.getLevel() * 1000;
     var spectrum = fft.analyze();
     // console.log(spectrum)
-
+    // console.log(localStorage.getItem("peopleSound")) 
    
     push();
     strokeWeight(1);
@@ -48,6 +71,18 @@ function draw(){
         
     }
     pop();
+
+    fill(255)
+    if(localStorage.getItem("peopleSound")){
+        const getPartySound = JSON.parse(localStorage.getItem("peopleSound"))
+    for(let i = 0; i < getPartySound.length; i++){
+        text(Math.floor(getPartySound[i].soundLeve), 100, i * 20);
+        text((new Date(getPartySound[i].time)).toString().slice(16,24), 20, i * 20);
+        // rect(WIDTH - 200, i * 10, 500,10);
+    }
+    }
+    
+
   
 }
 
