@@ -68,7 +68,8 @@ function draw(){
     for(let i = 0; i < spectrum.length; i++){
         let x = spectrum.length - i;
         let y = spectrum[i];
-       
+        colorMode(HSB, 100);
+        fill(y , y, x)
         circle(sin(i) * (volSize * (x * 0.01)), cos(i) * (y * (x * 0.01)), volSize);
         
     }
