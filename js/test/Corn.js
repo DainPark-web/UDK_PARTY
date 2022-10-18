@@ -20,7 +20,7 @@ class Corn {
         
     }
 
-    update(){
+    update(volSizeG){
         push()
         translate(this.pos.x, this.pos.y)
         if( this.count < 50 && this.cSize > 0){
@@ -31,7 +31,7 @@ class Corn {
                 fill(0)
             }
             // sin and cos
-            ellipse( WIDTH / 2 + random(-5, 5), HEIGHT/2 - (this.count * 5), this.cSize, this.cSize /1 )
+            ellipse( WIDTH / 2 + random(-3, 3), HEIGHT/2 - (this.count * 5), this.cSize, this.cSize )
             // just random pos
                 // ellipse( WIDTH / 2 + random(-cWidthValue, cWidthValue), HEIGHT/2 - (this.count * cHeightValue), this.cSize, this.cSize /1 )
             
@@ -39,7 +39,7 @@ class Corn {
                 // blendMode(BLEND)
                 noStroke()
                 fill(0,10,10, 2)
-                ellipse( WIDTH / 2 + random(-5, 5) + (this.count * 5), HEIGHT/2 + (this.count * 5), this.cSize, this.cSize /1 )
+                ellipse( WIDTH / 2 + random(-3, 3) + (this.count * 5), HEIGHT/2 + (this.count * 5), this.cSize, this.cSize /1 )
             pop()
             this.cSize = this.oSize - (this.count * this.wValue);
             this.count += 1;
