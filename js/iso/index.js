@@ -5,7 +5,7 @@ let HEIGHT = canvasContainer.clientHeight
 
 let gridTopX;
 let gridTopY;
-const sideLength = 60;
+const sideLength = 100;
 
 const cubes = [];
 
@@ -19,22 +19,22 @@ function setup() {
   gridTopX = width / 2;
   gridTopY = height / 2;
 
-  strokeWeight(2);
+  strokeWeight(5);
 
   cubes.push(new Cube(0, 0, 0));
 
 //   while (cubes.length < 10) {
 //     addRandomCube();
 //   }
-
-    for(let i = 0; i < 30; i++){
-        for (let j = 0; j < 10; j++){
-        cubes.push(new Cube((i * 2) - 15, i + j , i ))
-        cubes.push(new Cube((i * 2) - 15, i - j , i - 1 ))
-        cubes.push(new Cube((i * 2) - 15, i - j * 2 , i - 1 ))
-        cubes.push(new Cube((i * 2) - 15, i + j * 2 , i  ))
+    const cCount = 10;
+    const cW = 10
+    for(let i = 0; i < cCount; i++){
+        // cubes.push(new Cube((i * 2), i  , i ))
+        for(let j = 0; j< cCount; j++){
+            cubes.push(new Cube(i,j,4))
 
         }
+      
         
        
      
@@ -54,24 +54,39 @@ function setup() {
 }
 
 function draw() {
-  background(120);
+  background(0);
   let vol = mic.getLevel();
-  volSize = map(vol, 0, 1, 0, 100)
+  volSize = map(vol, 0, 1, 0, 10000)
+  volSizeE = map(vol, 0, 1, 0, 100)
   var spectrum = fft.analyze();
-time += 0.1;
+// time += 0.1;
   for(let i = 0; i< cubes.length; i++){
 
       cubes[i].draw();
     //   cubes[i].update(sin(time) * i * 0.5, sin(time) * i)
   }
 
-  for(let i = 0; i < spectrum.length; i++){
-    let x = spectrum.length - i;
-    let y = spectrum[i];
+//   for(let i = 0; i < spectrum.length; i++){
+//     let x = spectrum.length - i;
+//     let y = spectrum[i];
+//     // colorMode(HSB, 100);
+//     // fill(y , y, x)
+
+//     cubes[Math.floor(random(i))].update(-(volSize * (x * 0.01)),-(volSize * (x * 0.01)))
+    
+// }
+  for(let i = 0; i < cubes.length; i++){
+    // let x = spectrum.length - i;
+    // let y = spectrum[i];
     // colorMode(HSB, 100);
     // fill(y , y, x)
+    const cubeC = Math.floor(random(cubes.length))
+    // const cubeC = Math.floor(volSizeE)
+    if(cubes[cubeC]){
 
-    cubes[i].update(sin(i) * (volSize * (x * 0.01)), sin(i) * (volSize * (x * 0.01)))
+        cubes[i].update((-(sin(i * (volSizeE * 0.01)) + 1) * volSize) * 0.1,volSize)
+        // cubes[cubeC].update(-(( volSize) * 0.1),volSize)
+    }
     
 }
 }
