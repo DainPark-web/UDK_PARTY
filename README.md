@@ -3,3 +3,4 @@
 
 ### Todo
 - [ ] making Reset Btn
+- [ ] Background Error handling
