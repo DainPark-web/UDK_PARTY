@@ -58,6 +58,15 @@ function setup() {
   //create Graphics
 //   pg = createGraphics(400,400);
 
+setInterval(() => {
+  for (let i = 0; i < cubes.length; i++) {
+   
+    cubes[i].colorUpdate();
+  }
+}, (1000 * 10))
+
+
+
 }
 
 function draw() {
@@ -66,34 +75,43 @@ function draw() {
   volSize = map(vol, 0, 1, 0, 10000);
   volSizeE = map(vol, 0, 1, 0, 100);
   var spectrum = fft.analyze();
+  
 
   push();
-    fill("#E7E6DF")
+    fill(221, 220, 213)
     rect(0, 0, WIDTH,HEIGHT)
     // stroke(255)
-    const lCount = 20
+    // const lCount = 20
+    const lCount = 190
+    const lCountH = 0
+    translate(0, height/2)
     push()
     shearX(PI / 3.0);
-    translate(-width + 20, 0);
+    // translate(-width - 20, lCountH);
+    translate(-width/2, -height/2);
     strokeWeight(5)
     for(let i = 0; i < lCount; i++){
-        line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
+        // line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
+        line(i * lCount,0,i * lCount,HEIGHT);
 
     }
     pop()
     push()
     shearX(-PI / 3.0);
-    translate((-width / 10) - 8, 0);
+    // translate((-width / 10) - 19, lCountH);
+    translate(-width/2, -height/2);
     strokeWeight(5)
   
     for(let i = 0; i < lCount; i++){
-        line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
+        // line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
+        line(i * lCount,0,i * lCount,HEIGHT);
 
     }
     pop()
 
   pop();
-  
+
+ 
   for (let i = 0; i < cubes.length; i++) {
     cubes[i].draw();
   }
@@ -107,10 +125,12 @@ function draw() {
     // const cubeC = Math.floor(volSizeE)
     if (cubes[cubeC]) {
       // cubes[i].update((-(sin(i * (y * 0.01)) + 1) * (y  * ( 0.1))) ,volSize)
-      cubes[i].update(-(sin(i * (y * 0.001)) + 1) * (y * 0.5), volSize);
+      cubes[i].update(-(sin(i * (y * 0.001)) + 1) * (y * 0.6), volSize);
       // cubes[cubeC].update(-(( volSize) * 0.1),volSize)
     }
   }
+
+ 
 
   //error Handling
   push();
@@ -140,6 +160,8 @@ function draw() {
     }
   }
   pop();
+
+ 
 
   //createGraphics
 //   pg.background(51);

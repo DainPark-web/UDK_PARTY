@@ -44,6 +44,13 @@ class Cube {
       this.nY = 0;
       
     }
+
+    colorUpdate(){
+      this.random = Math.floor(random(4));
+      this.red = colors[this.random].s.r;
+      this.green = colors[this.random].s.g;
+      this.blue = colors[this.random].s.b;
+    }
     update(newX, newY ){
         this.nX = newX;
         this.nY = newY
