@@ -112,7 +112,7 @@ function draw() {
 
   pop();
 
- 
+  //cube
   for (let i = 0; i < cubes.length; i++) {
     cubes[i].draw();
   }
@@ -136,8 +136,11 @@ function draw() {
   //error Handling
   push();
   const rectW = 180;
+  // const rectW = 90;
+  // const marginW = 10;
   fill(46, 49, 145);
   rect(WIDTH - rectW - 20, 20, rectW, HEIGHT - 40, 20);
+  // rect(marginW, HEIGHT - rectW - marginW, WIDTH - marginW * 2, rectW, 20);
   if (localStorage.getItem("peopleSound")) {
     const getPartySound = JSON.parse(localStorage.getItem("peopleSound"));
     for (let i = 0; i < getPartySound.length; i++) {
