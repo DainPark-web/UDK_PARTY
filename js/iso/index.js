@@ -33,6 +33,7 @@ function setup() {
   gridTopX = width / 2;
   gridTopY = height / 2;
 
+  
   strokeWeight(3);
 
   cubes.push(new Cube(0, 0, 0));
@@ -161,8 +162,7 @@ function draw() {
   }
   pop();
 
- 
-
+  
   //createGraphics
 //   pg.background(51);
 //   pg.noFill();
@@ -171,4 +171,11 @@ function draw() {
 
 //   //Draw the offscreen buffer to the screen with image()
 //   image(pg, 150, 75);
+}
+
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    peopleSound = [];
+    localStorage.removeItem("peopleSound")
+  } 
 }
