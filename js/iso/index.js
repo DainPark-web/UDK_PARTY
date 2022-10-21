@@ -79,7 +79,7 @@ function draw() {
   
 
   push();
-    fill(221, 220, 213)
+    fill(201, 200, 193)
     rect(0, 0, WIDTH,HEIGHT)
     // stroke(255)
     // const lCount = 20
