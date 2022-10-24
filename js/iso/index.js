@@ -32,8 +32,7 @@ function setup() {
   cnv.parent(canvasContainer);
   gridTopX = width / 2;
   gridTopY = height / 2;
-
-  
+  pixelDensity(1);
   strokeWeight(3);
 
   cubes.push(new Cube(0, 0, 0));
@@ -57,17 +56,13 @@ function setup() {
   fft.setInput(mic);
 
   //create Graphics
-//   pg = createGraphics(400,400);
+    pg = createGraphics(WIDTH,HEIGHT);
 
-setInterval(() => {
-  for (let i = 0; i < cubes.length; i++) {
-   
-    cubes[i].colorUpdate();
-  }
-}, (1000 * 10))
-
-
-
+  setInterval(() => {
+    for (let i = 0; i < cubes.length; i++) {
+      cubes[i].colorUpdate();
+    }
+  }, 1000 * 10);
 }
 
 function draw() {
@@ -76,39 +71,36 @@ function draw() {
   volSize = map(vol, 0, 1, 0, 10000);
   volSizeE = map(vol, 0, 1, 0, 100);
   var spectrum = fft.analyze();
-  
 
   push();
-    fill(201, 200, 193)
-    rect(0, 0, WIDTH,HEIGHT)
-    // stroke(255)
-    // const lCount = 20
-    const lCount = 190
-    const lCountH = 0
-    translate(0, height/2)
-    push()
-    shearX(PI / 3.0);
-    // translate(-width - 20, lCountH);
-    translate(-width/2, -height/2);
-    strokeWeight(5)
-    for(let i = 0; i < lCount; i++){
-        // line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
-        line(i * lCount,0,i * lCount,HEIGHT);
+  fill(201, 200, 193);
+  rect(0, 0, WIDTH, HEIGHT);
+  // stroke(255)
+  // const lCount = 20
+  const lCount = 190;
+  const lCountH = 0;
+  translate(0, height / 2);
+  push();
+  shearX(PI / 3.0);
+  // translate(-width - 20, lCountH);
+  translate(-width / 2, -height / 2);
+  strokeWeight(5);
+  for (let i = 0; i < lCount; i++) {
+    // line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
+    line(i * lCount, 0, i * lCount, HEIGHT);
+  }
+  pop();
+  push();
+  shearX(-PI / 3.0);
+  // translate((-width / 10) - 19, lCountH);
+  translate(-width / 2, -height / 2);
+  strokeWeight(5);
 
-    }
-    pop()
-    push()
-    shearX(-PI / 3.0);
-    // translate((-width / 10) - 19, lCountH);
-    translate(-width/2, -height/2);
-    strokeWeight(5)
-  
-    for(let i = 0; i < lCount; i++){
-        // line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
-        line(i * lCount,0,i * lCount,HEIGHT);
-
-    }
-    pop()
+  for (let i = 0; i < lCount; i++) {
+    // line(i * (WIDTH * 2 / lCount),0,i * (WIDTH * 2 / lCount),HEIGHT);
+    line(i * lCount, 0, i * lCount, HEIGHT);
+  }
+  pop();
 
   pop();
 
@@ -131,10 +123,9 @@ function draw() {
     }
   }
 
- 
-
   //error Handling
   push();
+  
   const rectW = 180;
   // const rectW = 90;
   // const marginW = 10;
@@ -165,20 +156,34 @@ function draw() {
   }
   pop();
 
-  
   //createGraphics
-//   pg.background(51);
-//   pg.noFill();
-//   pg.stroke(255);
-//   pg.ellipse(mouseX - 150, mouseY - 75, 60, 60);
+    // pg.background(0);
+    // pg.noFill();
+    // pg.stroke(255);
+    // pg.ellipse(mouseX - 150, mouseY - 75, 60, 60);
 
-//   //Draw the offscreen buffer to the screen with image()
-//   image(pg, 150, 75);
+  //   //Draw the offscreen buffer to the screen with image()
+    // image(pg, 150, 75);
 }
 
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
     peopleSound = [];
-    localStorage.removeItem("peopleSound")
-  } 
+    localStorage.removeItem("peopleSound");
+  }
+  if (keyCode === RIGHT_ARROW) {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      
+     
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
+
+function windowResized(){
+  WIDTH = canvasContainer.clientWidth;
+  HEIGHT = canvasContainer.clientHeight;
+  resizeCanvas(WIDTH, HEIGHT);
 }
