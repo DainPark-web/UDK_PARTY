@@ -25,7 +25,7 @@ setInterval(() => {
   };
   peopleSound.push(soundConfig);
   localStorage.setItem("peopleSound", JSON.stringify(peopleSound));
-}, 5000);
+}, (1000 * 60) * 30);
 
 function setup() {
   let cnv = createCanvas(WIDTH, HEIGHT);
@@ -130,7 +130,7 @@ function draw() {
   // const rectW = 90;
   // const marginW = 10;
   fill(46, 49, 145);
-  rect(WIDTH - rectW - 20, 20, rectW, HEIGHT - 40, 20);
+  rect(20, HEIGHT - rectW, WIDTH - 40, rectW - 20, 20);
   // rect(marginW, HEIGHT - rectW - marginW, WIDTH - marginW * 2, rectW, 20);
   if (localStorage.getItem("peopleSound")) {
     const getPartySound = JSON.parse(localStorage.getItem("peopleSound"));
@@ -145,11 +145,12 @@ function draw() {
         100
       );
       noStroke();
-      rect(WIDTH - rectW + 90 - rectWW, i * 20 + 40 - 5, rectWW, 5);
+      rect(i * 50 + 50,HEIGHT - rectW + 120, 5, rectWW);
       text(
-        new Date(getPartySound[i].time).toString().slice(16, 24),
-        WIDTH - rectW + 100,
-        i * 20 + 40
+        new Date(getPartySound[i].time).toString().slice(16, 21),
+        i * 50 + 40,
+        HEIGHT - rectW + 140,
+       
       );
       // rect(WIDTH - 200, i * 10, 500,10);
     }
