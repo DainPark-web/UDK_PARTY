@@ -12,20 +12,53 @@ const cubes = [];
 let mic, fft;
 let pg;
 let time = 0;
+let volSize;
+let volSizeInterval;
 
 // making DB (LocalStorage)
 let peopleSound = [];
+let peopleSoundSecond = []
+let peopleSoundAverage = []
+// setInterval(() => {
+//   if (localStorage.getItem("peopleSound")) {
+//     peopleSound = JSON.parse(localStorage.getItem("peopleSound"));
+//   }
+//   const soundConfig = {
+//     soundLeve: volSize,
+//     time: Date.now(),
+//   };
+//   peopleSound.push(soundConfig);
+//   localStorage.setItem("peopleSound", JSON.stringify(peopleSound));
+// }, (1000 * 60) * 30);
 setInterval(() => {
   if (localStorage.getItem("peopleSound")) {
     peopleSound = JSON.parse(localStorage.getItem("peopleSound"));
   }
   const soundConfig = {
-    soundLeve: volSize,
+    soundLeve: volSizeInterval,
     time: Date.now(),
   };
+  peopleSoundSecond.push(volSizeInterval)
+  console.log(volSizeInterval)
   peopleSound.push(soundConfig);
   localStorage.setItem("peopleSound", JSON.stringify(peopleSound));
-}, (1000 * 60) * 30);
+}, 1000);
+
+setInterval(() => {
+  if (localStorage.getItem("peopleSoundAverage")) {
+    peopleSoundAverage = JSON.parse(localStorage.getItem("peopleSoundAverage"));
+  }
+    const nowArray = [...peopleSoundSecond]
+    const average = (peopleSoundSecond.reduce((prev, curr) => prev + curr))/nowArray.length
+    const soundConfig = {
+      soundLeve: average,
+      time: Date.now(),
+    };
+    peopleSoundAverage.push(soundConfig);
+    console.log(peopleSoundAverage)
+    localStorage.setItem("peopleSoundAverage", JSON.stringify(peopleSoundAverage));
+    console.log()
+}, 5000);
 
 function setup() {
   let cnv = createCanvas(WIDTH, HEIGHT);
@@ -70,6 +103,7 @@ function draw() {
   let vol = mic.getLevel();
   volSize = map(vol, 0, 1, 0, 10000);
   volSizeE = map(vol, 0, 1, 0, 100);
+  volSizeInterval = map(vol, 0, 1, 0, 100);
   var spectrum = fft.analyze();
 
   push();
@@ -129,23 +163,36 @@ function draw() {
   const rectW = 180;
   // const rectW = 90;
   // const marginW = 10;
-  fill(46, 49, 145);
+  fill(255,255,255,150);
   rect(20, HEIGHT - rectW, WIDTH - 40, rectW - 20, 20);
   // rect(marginW, HEIGHT - rectW - marginW, WIDTH - marginW * 2, rectW, 20);
-  if (localStorage.getItem("peopleSound")) {
-    const getPartySound = JSON.parse(localStorage.getItem("peopleSound"));
+  if (localStorage.getItem("peopleSoundAverage")) {
+    const getPartySound = JSON.parse(localStorage.getItem("peopleSoundAverage"));
     for (let i = 0; i < getPartySound.length; i++) {
-      fill(255);
+      
       // text(Math.floor(getPartySound[i].soundLeve), (WIDTH - rectW) + 80, (i * 20) + 40);
-      const rectWW = map(
+      let rectWW = map(
         Math.floor(getPartySound[i].soundLeve),
         0,
-        5000,
+        100,
         2,
-        100
+        1000
       );
-      noStroke();
-      rect(i * 50 + 50,HEIGHT - rectW + 120, 5, rectWW);
+      if(rectWW > 100){
+        rectWW = 100;
+      }
+      strokeWeight(1)
+      push()
+        if(rectWW < 20){
+          fill(234, 70, 83);
+        }else if(rectWW < 40){
+          fill(46,49,145)
+        }else if(rectWW < 60){
+          fill(0,0,0)
+        }
+        rect(i * 50 + 50,HEIGHT - rectW + 120, 5, -rectWW);
+      pop()
+      fill(0)
       text(
         new Date(getPartySound[i].time).toString().slice(16, 21),
         i * 50 + 40,
@@ -170,7 +217,10 @@ function draw() {
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
     peopleSound = [];
+    peopleSoundSecond =[]
+    peopleSoundAverage = []
     localStorage.removeItem("peopleSound");
+    localStorage.removeItem("peopleSoundAverage");
   }
   if (keyCode === RIGHT_ARROW) {
     if (!document.fullscreenElement) {
