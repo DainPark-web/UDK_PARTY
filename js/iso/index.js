@@ -89,7 +89,7 @@ function setup() {
   fft.setInput(mic);
 
   //create Graphics
-    pg = createGraphics(WIDTH,HEIGHT);
+    // pg = createGraphics(WIDTH,HEIGHT);
 
   setInterval(() => {
     for (let i = 0; i < cubes.length; i++) {
@@ -108,10 +108,11 @@ function draw() {
 
   push();
   fill(201, 200, 193);
+  stroke(0)
   rect(0, 0, WIDTH, HEIGHT);
   // stroke(255)
   // const lCount = 20
-  const lCount = 190;
+  const lCount = 120;
   const lCountH = 0;
   translate(0, height / 2);
   push();
