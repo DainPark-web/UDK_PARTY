@@ -5,7 +5,7 @@ let HEIGHT = canvasContainer.clientHeight;
 
 let gridTopX;
 let gridTopY;
-const sideLength = 100;
+const sideLength = 70;
 
 const cubes = [];
 
@@ -42,7 +42,7 @@ setInterval(() => {
   console.log(volSizeInterval)
   peopleSound.push(soundConfig);
   localStorage.setItem("peopleSound", JSON.stringify(peopleSound));
-}, 1000);
+}, (1000 * 60) * 10);
 
 setInterval(() => {
   if (localStorage.getItem("peopleSoundAverage")) {
@@ -58,7 +58,7 @@ setInterval(() => {
     console.log(peopleSoundAverage)
     localStorage.setItem("peopleSoundAverage", JSON.stringify(peopleSoundAverage));
     console.log()
-}, 5000);
+}, (1000 * 60) * 60);
 
 function setup() {
   let cnv = createCanvas(WIDTH, HEIGHT);
@@ -190,12 +190,12 @@ function draw() {
         }else if(rectWW < 60){
           fill(0,0,0)
         }
-        rect(i * 50 + 50,HEIGHT - rectW + 120, 5, -rectWW);
+        rect(i * 30 + 50,HEIGHT - rectW + 120, 5, -rectWW);
       pop()
       fill(0)
       text(
         new Date(getPartySound[i].time).toString().slice(16, 21),
-        i * 50 + 40,
+        i * 30 + 40,
         HEIGHT - rectW + 140,
        
       );
