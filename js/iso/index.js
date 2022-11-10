@@ -103,7 +103,7 @@ function draw() {
   let vol = mic.getLevel();
   volSize = map(vol, 0, 1, 0, 10000);
   volSizeE = map(vol, 0, 1, 0, 100);
-  volSizeInterval = map(vol, 0, 1, 0, 140);
+  volSizeInterval = map(vol, 0, 1, 0, 500);
   var spectrum = fft.analyze();
 
   push();
