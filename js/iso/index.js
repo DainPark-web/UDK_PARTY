@@ -195,7 +195,7 @@ function draw() {
       pop()
       fill(0)
       text(
-        new Date(getPartySound[i].time).toString().slice(16, 21),
+        new Date(getPartySound[i].time).toString().slice(19, 24),
         i * 30 + 40,
         HEIGHT - rectW + 140,
        
