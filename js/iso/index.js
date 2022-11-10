@@ -165,7 +165,7 @@ function draw() {
   // const rectW = 90;
   // const marginW = 10;
   fill(255,255,255,150);
-  rect(20, HEIGHT - rectW, WIDTH - 40, rectW - 20, 20);
+  rect(20, HEIGHT - rectW, WIDTH - 40, rectW - 20, 5);
   // rect(marginW, HEIGHT - rectW - marginW, WIDTH - marginW * 2, rectW, 20);
   if (localStorage.getItem("peopleSoundAverage")) {
     const getPartySound = JSON.parse(localStorage.getItem("peopleSoundAverage"));
