@@ -41,7 +41,7 @@ setInterval(() => {
     time: Date.now(),
   };
   peopleSoundSecond.push(volSizeInterval)
-  console.log(volSizeInterval)
+  // console.log(volSizeInterval)
   peopleSound.push(soundConfig);
   localStorage.setItem("peopleSound", JSON.stringify(peopleSound));
 }, 1000);
@@ -58,10 +58,10 @@ setInterval(() => {
     };
     peopleSoundAverage.push(soundConfig);
     wholedata.push(soundConfig)
-    console.log(peopleSoundAverage)
+    // console.log(peopleSoundAverage)
     localStorage.setItem("peopleSoundAverage", JSON.stringify(peopleSoundAverage));
     localStorage.setItem("wholeData", JSON.stringify(wholedata));
-    console.log()
+    // console.log()
 }, 2000);
 
 function setup() {
@@ -105,7 +105,7 @@ function setup() {
 function draw() {
   background(0, 0, 0, 90);
   let vol = mic.getLevel();
-  console.log(vol)
+  // console.log(vol)
   volSize = map(vol, 0, 1, 0, 10000);
   volSizeE = map(vol, 0, 1, 0, 100);
   volSizeInterval = map(vol, 0, 1, 0, 500);
