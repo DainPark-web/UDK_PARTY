@@ -42,7 +42,7 @@ setInterval(() => {
   console.log(volSizeInterval)
   peopleSound.push(soundConfig);
   localStorage.setItem("peopleSound", JSON.stringify(peopleSound));
-}, (1000 * 60) * 5);
+}, 1000);
 // (1000 * 60) * 5
 setInterval(() => {
   if (localStorage.getItem("peopleSoundAverage")) {
@@ -58,7 +58,7 @@ setInterval(() => {
     console.log(peopleSoundAverage)
     localStorage.setItem("peopleSoundAverage", JSON.stringify(peopleSoundAverage));
     console.log()
-}, (1000 * 60) * 15);
+}, 2000);
 
 function setup() {
   let cnv = createCanvas(WIDTH, HEIGHT);
