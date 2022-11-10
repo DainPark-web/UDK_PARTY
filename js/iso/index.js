@@ -19,6 +19,8 @@ let volSizeInterval;
 let peopleSound = [];
 let peopleSoundSecond = []
 let peopleSoundAverage = []
+
+let wholedata = []
 // setInterval(() => {
 //   if (localStorage.getItem("peopleSound")) {
 //     peopleSound = JSON.parse(localStorage.getItem("peopleSound"));
@@ -55,8 +57,10 @@ setInterval(() => {
       time: Date.now(),
     };
     peopleSoundAverage.push(soundConfig);
+    wholedata.push(soundConfig)
     console.log(peopleSoundAverage)
     localStorage.setItem("peopleSoundAverage", JSON.stringify(peopleSoundAverage));
+    localStorage.setItem("wholeData", JSON.stringify(wholedata));
     console.log()
 }, 2000);
 
@@ -227,8 +231,11 @@ function keyPressed() {
     peopleSound = [];
     peopleSoundSecond =[]
     peopleSoundAverage = []
+    wholedata =[]
     localStorage.removeItem("peopleSound");
     localStorage.removeItem("peopleSoundAverage");
+    localStorage.removeItem("wholeData");
+
   }
   if (keyCode === RIGHT_ARROW) {
     if (!document.fullscreenElement) {
