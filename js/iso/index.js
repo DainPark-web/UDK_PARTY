@@ -95,7 +95,7 @@ function setup() {
     for (let i = 0; i < cubes.length; i++) {
       cubes[i].colorUpdate();
     }
-  }, 1000 * 10);
+  }, 1000 * 100);
 }
 
 function draw() {
