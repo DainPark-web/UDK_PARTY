@@ -42,7 +42,7 @@ setInterval(() => {
   console.log(volSizeInterval)
   peopleSound.push(soundConfig);
   localStorage.setItem("peopleSound", JSON.stringify(peopleSound));
-}, (1000 * 1));
+}, (1000 * 60) * 5);
 // (1000 * 60) * 5
 setInterval(() => {
   if (localStorage.getItem("peopleSoundAverage")) {
@@ -58,7 +58,7 @@ setInterval(() => {
     console.log(peopleSoundAverage)
     localStorage.setItem("peopleSoundAverage", JSON.stringify(peopleSoundAverage));
     console.log()
-}, (1000 * 2) * 1);
+}, (1000 * 60) * 15);
 
 function setup() {
   let cnv = createCanvas(WIDTH, HEIGHT);
@@ -103,7 +103,7 @@ function draw() {
   let vol = mic.getLevel();
   volSize = map(vol, 0, 1, 0, 10000);
   volSizeE = map(vol, 0, 1, 0, 100);
-  volSizeInterval = map(vol, 0, 1, 0, 130);
+  volSizeInterval = map(vol, 0, 1, 0, 140);
   var spectrum = fft.analyze();
 
   push();
