@@ -199,12 +199,12 @@ function draw() {
         rect(i * 30 + 50,HEIGHT - rectW + 120, 5, -rectWW);
       pop()
       fill(0)
-      text(
-        new Date(getPartySound[i].time).toString().slice(19, 24),
-        i * 30 + 40,
-        HEIGHT - rectW + 140,
+      // text(
+      //   new Date(getPartySound[i].time).toString().slice(19, 24),
+      //   i * 30 + 40,
+      //   HEIGHT - rectW + 140,
        
-      );
+      // );
       // rect(WIDTH - 200, i * 10, 500,10);
     }
   }
