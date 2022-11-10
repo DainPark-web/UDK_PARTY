@@ -108,7 +108,7 @@ function draw() {
   console.log(vol)
   volSize = map(vol, 0, 1, 0, 10000);
   volSizeE = map(vol, 0, 1, 0, 100);
-  volSizeInterval = map(vol, 0, 0.7, 0, 500);
+  volSizeInterval = map(vol, 0, 1, 0, 500);
   var spectrum = fft.analyze();
 
   push();
