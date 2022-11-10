@@ -204,6 +204,13 @@ function draw() {
     }
   }
   pop();
+  if(peopleSoundAverage.length > 60){
+    peopleSound = [];
+    peopleSoundSecond =[]
+    peopleSoundAverage = []
+    localStorage.removeItem("peopleSound");
+    localStorage.removeItem("peopleSoundAverage");
+  }
 
   //createGraphics
     // pg.background(0);
