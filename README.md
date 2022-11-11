@@ -1,14 +1,7 @@
-# UDK PARTY 11.11
+# AG INFO PARTY
 
 
-### Todo
-- [ ] making Reset Btn
-- [ ] Background Error handling
-- [ ] Refactoring
+[Website🌍](https://infoparty.netlify.app/)
 
+<img src="https://i.pinimg.com/474x/a5/57/ac/a557ac1014d147641ab602ca53ebe088.jpg" width=100% />
 
-수정
-- bar chart horizontal 
-- color 수정
-- bar chart average value
-- bar chart design
